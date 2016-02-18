@@ -42,7 +42,10 @@ module.exports = function(RED) {
 			node.latitude = credentials.latitude
 			node.longitude = credentials.longitude
         } else {
-            node.error("No latitude or longitude set.")
+            node.log("No latitude or longitude set. using globals")
+            		node.latitude = context.global.HomeLocation.lat
+			node.longitude = context.global.HomeLocation.lon
+		node.log("Lat: "+ node.lattitude+" Lon: "+ node.longtitude)			
         }
 
     	node.log(util.format("Calculating sun event times for %s, %s.", node.latitude, node.longitude))
